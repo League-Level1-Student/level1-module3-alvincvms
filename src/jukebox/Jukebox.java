@@ -27,6 +27,7 @@ public class Jukebox implements Runnable {
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
     	Song song1 = new Song("S1.mp3");
+    	Song song2 = new Song("S2.mp3");
 		// 3. Play the Song
     	song1.play();
 		/*
@@ -36,6 +37,8 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	loadImage("S1Cover.jpg");
+    	loadImage("S2Cover.jpg");
     }
     
     

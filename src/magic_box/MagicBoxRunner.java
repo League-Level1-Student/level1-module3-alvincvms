@@ -8,6 +8,6 @@ import javax.swing.SwingUtilities;
 
 public class MagicBoxRunner {
 	public static void main(String[] args) throws Exception {
-		SwingUtilities.invokeLater(new MagicBox());
+		new MagicBox().run();
 	}
 }

@@ -1,3 +1,4 @@
+
 package magic_box;
 /*
  *    Copyright (c) The League of Amazing Programmers 2013-2019
@@ -36,7 +37,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	BufferedImage backgroundImage;
 
-
+    MediaPalace media = new MediaPalace();
 	@Override
 	public void run() {
 		try {
@@ -73,7 +74,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		media.speak("Greetings");
 	}
 
 	@Override
