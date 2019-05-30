@@ -5,6 +5,8 @@ package jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,16 +25,21 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+	Song song1 = new Song("S1.mp3");
+	Song song2 = new Song("S2.mp3");
+	JButton S1Play = new JButton("Play");
+	JButton S2Play = new JButton("Play");
+	JLabel S1 = loadImage("S1Cover.jpg");
+	JLabel S2 = loadImage("S2Cover.jpg");
+	JFrame frame = new JFrame("A Random Interface");
+	JPanel panel = new JPanel();
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-    	Song song1 = new Song("S1.mp3");
-    	Song song2 = new Song("S2.mp3");
 		// 3. Play the Song
-    	song1.play();
+
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -37,8 +47,13 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
-    	loadImage("S1Cover.jpg");
-    	loadImage("S2Cover.jpg");
+    	S1Play.setIcon(S1.getIcon());         S2Play.setIcon(S2.getIcon());
+    	panel.add(S1Play);   panel.add(S2Play);
+    	frame.add(panel);
+    	frame.setVisible(true);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	frame.pack();
+    	S1Play.addActionListener(this); S2Play.addActionListener(this);
     }
     
     
@@ -47,6 +62,20 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton pressed = (JButton)e.getSource();
+		if(pressed == S1Play) {
+			song2.stop();
+			song1.play();
+		}
+		if(pressed == S2Play) {
+			song1.stop();
+			song2.play();
+		}
 	}
 
 }

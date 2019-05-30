@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -55,6 +56,8 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
+		
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -74,13 +77,16 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		media.speak("Greetings");
+		if(backgroundImage.getRGB(e.getX(), e.getY())== -8750729) {
+			JOptionPane.showMessageDialog(null, "Welcome");
+		}
+		System.out.println("current location: "+ getX()+"   "  +getY());
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		media.speak("Greetings");
 	}
 
 	@Override
