@@ -80,7 +80,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		if(backgroundImage.getRGB(e.getX(), e.getY())== -8750729) {
 			JOptionPane.showMessageDialog(null, "Welcome");
 		}
-		System.out.println("current location: "+ getX()+"   "  +getY());
+		System.out.println("current location: "+   +getY());
 	}
 
 	@Override
